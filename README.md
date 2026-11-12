@@ -4,8 +4,10 @@
 
 CyberTwin is a 100% software-based cybersecurity digital twin application designed for security operations centers (SOC), academic research, and collegiate cybersecurity demonstrations. It creates a virtual digital replica of an enterprise/campus network to safely model threats, run deterministic simulated cyberattacks, monitor intrusion alerts, execute incident response workflows, apply defensive controls, and generate executive PDF security audits.
 
-# Working Website
+# Backend API
 https://cybertwin-ei42.onrender.com
+API docs: https://cybertwin-ei42.onrender.com/docs
+Health check: https://cybertwin-ei42.onrender.com/api/health
 
 ---
 
@@ -81,14 +83,14 @@ npm run dev
 
 ### 4. Deploying the frontend on Render
 
-The backend and frontend are deployed as separate Render services. Create a Static Site from this repository's `render.yaml` Blueprint, or configure a Static Site manually:
+The backend and frontend are deployed as separate Render services. In Render, create a Blueprint from this repository's `render.yaml` file to create the frontend Static Site, or configure a Static Site manually:
 
 - **Root Directory:** `frontend`
 - **Build Command:** `npm ci && npm run build`
 - **Publish Directory:** `dist`
-- **Environment Variable:** `VITE_API_URL` = your backend's public URL followed by `/api` (for example, `https://your-backend.onrender.com/api`)
+- **Environment Variable:** `VITE_API_URL` = `https://cybertwin-ei42.onrender.com/api`
 
-Set `VITE_API_URL` before building or redeploying the static site. The frontend uses it for API requests and report links. The backend must allow requests from the deployed frontend origin.
+The frontend uses `VITE_API_URL` for API requests and report links. The Blueprint already sets it to the deployed backend URL. The backend must allow requests from the deployed frontend origin.
 
 ---
 
