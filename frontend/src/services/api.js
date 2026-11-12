@@ -1,15 +1,11 @@
 import axios from 'axios';
 
-// Dynamically determine the backend base URL (handles both Vite dev proxy and direct backend host)
-const getApiBaseUrl = () => {
-  if (typeof window !== 'undefined' && window.location.port === '5173') {
-    return '/api';
-  }
-  return import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
-};
+const apiBaseUrl = import.meta.env.DEV
+  ? '/api'
+  : import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
 
 const api = axios.create({
-  baseURL: getApiBaseUrl(),
+  baseURL: apiBaseUrl,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -122,7 +118,7 @@ export const downloadReportPdfBlob = async (networkId) => {
 };
 
 export const downloadReportPdfUrl = (networkId) => {
-  return `/api/reports/${networkId}`;
+  return `${apiBaseUrl}/reports/${networkId}`;
 };
 
 // Auth

@@ -76,6 +76,17 @@ npm run dev
 ```
 - App UI: [http://localhost:5173](http://localhost:5173)
 
+### 4. Deploying the frontend on Render
+
+The backend and frontend are deployed as separate Render services. Create a Static Site from this repository's `render.yaml` Blueprint, or configure a Static Site manually:
+
+- **Root Directory:** `frontend`
+- **Build Command:** `npm ci && npm run build`
+- **Publish Directory:** `dist`
+- **Environment Variable:** `VITE_API_URL` = your backend's public URL followed by `/api` (for example, `https://your-backend.onrender.com/api`)
+
+Set `VITE_API_URL` before building or redeploying the static site. The frontend uses it for API requests and report links. The backend must allow requests from the deployed frontend origin.
+
 ---
 
 ## 🧪 Running Automated Tests
@@ -108,4 +119,3 @@ All 8 foundational tests pass:
 - **Warning / Moderate**: `#D5A45C` (Warm amber)
 - **Danger / Critical**: `#CE7373` (Restrained coral red)
 - **Navigation Sidebar**: `#202E39` (Deep charcoal navy)
-

@@ -10,7 +10,7 @@ import {
   RefreshCw,
   LogOut
 } from 'lucide-react';
-import { downloadReportPdfBlob } from '../services/api';
+import { downloadReportPdfBlob, downloadReportPdfUrl } from '../services/api';
 
 export default function TopNavbar({
   networks = [],
@@ -33,7 +33,7 @@ export default function TopNavbar({
     } catch (err) {
       console.error('Failed to download PDF:', err);
       // Fallback direct open
-      window.open(`http://127.0.0.1:8000/api/reports/${currentNetwork.id}`, '_blank');
+      window.open(downloadReportPdfUrl(currentNetwork.id), '_blank');
     } finally {
       setIsExporting(false);
     }

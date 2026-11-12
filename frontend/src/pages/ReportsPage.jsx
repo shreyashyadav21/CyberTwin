@@ -11,7 +11,6 @@ export default function ReportsPage({ network, assessment }) {
 
   const networkId = network?.id || 'university-sample-01';
   const directUrl = downloadReportPdfUrl(networkId);
-  const backendDirectUrl = `http://127.0.0.1:8000/api/reports/${networkId}`;
 
   const handleDownload = async () => {
     setIsDownloading(true);
@@ -24,7 +23,7 @@ export default function ReportsPage({ network, assessment }) {
     } catch (err) {
       console.error('PDF download error:', err);
       // Fallback: direct window redirect
-      window.open(backendDirectUrl, '_blank');
+      window.open(directUrl, '_blank');
       setErrorMsg('Direct download triggered in new tab.');
     } finally {
       setIsDownloading(false);
@@ -167,7 +166,7 @@ export default function ReportsPage({ network, assessment }) {
               </button>
 
               <a
-                href={backendDirectUrl}
+                href={directUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center space-x-1.5 px-3 py-2 rounded-lg text-xs text-[#397C78] hover:underline"
